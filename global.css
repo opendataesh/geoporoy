@@ -45,11 +45,12 @@ div.iw-wrapper img { width:200px; }
 .product-item-img { width:200px; }
 .product-item-text { margin-bottom:0; }
 
-.product-item1 { float:left; position:relative; padding:20px; margin: auto; border:solid 1px #d3d3d3; border-top:none; background-color:#ffffff;}
-.product-item1:hover { background-color:rgba(241, 240, 233, 0.938); }
-.product-item1-img-container { position:absolute; top:100px; left:100px; }
+.product-item1 { float:left; position:relative; padding:10px 10px 10px 10px; margin-bottom:20px; margin-right:20px; width:200px; height:600px; }
+.product-item1:hover { background-color:rgba(255, 232, 103, 0.938); }
+.product-item1-img-container { position:absolute; top:10px; left:10px; }
 .product-item1-img { width:980px; }
-/*.wrapper { width:920px; margin:auto; padding:20px; border:solid 1px #d3d3d3; border-top:none; background-color:#ffffff; }*/
+.product-item1-text { margin-bottom:0; }
+
 .product-main-image { float:right; margin-left:20px; }
 .product-main-image-c { float:none; margin-left:20px; }
 .product-main-image-l { float:left; margin-right:20px; }
