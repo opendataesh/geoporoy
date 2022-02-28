@@ -1,0 +1,98 @@
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Catastro Construccion 3D</title>
+    <style>
+        #map-canvas { height:100%; }
+    </style>
+    <script src="lugares.js"></script>
+    <link href="global.css" rel="stylesheet" type="text/css" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEB1plSzdQgv2oSvyvPT99BHmhJpG8Cys&v=3.exp"></script>
+
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css" type="text/css"/>
+    
+    <link href='css/estilobase.css' rel='stylesheet' />
+
+    <script src='js/construccion.js'></script>
+    <script src='js/3d.js'></script>
+    <script>
+        //Añadir vuestor token y/o estilo !!
+        var map;
+        function init() {
+            mapboxgl.accessToken =
+                'pk.eyJ1IjoibWFwYm94ZXNoIiwiYSI6ImNrazJkY25vcjEwM28ycXQ3eWZvMmI5NGwifQ.pHd5DwxQiIqtRVMejCpjQw';
+            map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/satellite-streets-v10',
+                center: [-72.013175, -13.504832],
+                zoom: 15,
+                attributionControl: false,
+                pitch: 45,
+                hash: true
+            });
+
+            map.addControl(new mapboxgl.AttributionControl({ compact: true }));
+            map.addControl(new mapboxgl.NavigationControl());
+
+            map.addControl(
+                new MapboxGeocoder({
+                accessToken: mapboxgl.accessToken,
+                mapboxgl: mapboxgl,
+                collapsed:true,
+                bbox:[-72.02,-13.5,-72.00,-13.5],
+                placeholder:"Buscar..."
+                }));
+
+            map.on('load', function () {
+
+                addconstruccionCapa();
+                
+                add3D();
+                addPopupToMapconstruccion3D("construccion");
+            }); //fin onload
+
+        } // final init
+    </script>
+</head>
+
+<body onload="init()">
+    		<!--Div para el contenido--> 
+
+		<div class="header" >
+			<p class="logo"><img src="img/logo_5.png" /></p>
+		</div>
+
+		<!--Div para el menu-->
+
+        <div class="menu">
+			<ul class="menu-items">
+				<li class="menu-item"><a href="index.html " class="menu-item-text">Inicio</a></li>
+				<li class="menu-item"><a href="recorrido.html" class="menu-item-text">Distrito Poroy</a></li>
+                <li class="menu-item"><a href="construccion.html" class="menu-item-text">Construccion 3D</a></li>
+                <li class="menu-item"><a href="catastro.html" class="menu-item-text">Catastro Urbano</a></li>
+			</ul>
+		</div>
+
+
+<div class="wrapper">
+    <h3>CONSTRUCCION 3D</h3>
+    <div class="panelTitulo">
+        <label id="altura">De de 1 piso(s)</label>
+        <input id="slider" onChange="filtrarconstruccion(this.value)" type="range" min="1" max="7" step="1" value="0" />
+    
+        <input id="textos" onChange= "verTextos(this.checked)" type="checkbox" checked >Ver topónimos
+    </div>
+        
+
+       
+    <div id="map"></div>
+	</div>
+    
+</body>
+
+</html>

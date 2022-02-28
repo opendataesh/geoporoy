@@ -2,11 +2,12 @@ var map, osm, controlCapas;
 
 function init() {
     map = L.map('map', {
-        center: [42.6863, 2.8382],
-        zoom: 7
+        center: [-13.503460, -72.020208],
+        zoom: 15
+
     });
     osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
+        maxZoom: 25,
         minZoom: 1,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright"/>OpenStreetMap</a>'
     });
